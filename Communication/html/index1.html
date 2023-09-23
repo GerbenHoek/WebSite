@@ -35,6 +35,21 @@ table tr td:last-child {
 .shadow {
   box-shadow: 1px 2px 3px #969493;
   background-color:#F0F0F0;
+  border-radius: 5px; 
+}
+
+.redirect {
+   background-color: #e6efff;  
+   border: 2px outset #e6efff;
+   border-radius: 5px; 
+   text-align: center;
+}
+
+.redirect:hover {
+   background-color: #d4e3ff;  
+   border: 2px outset #e6efff;
+   border-radius: 5px; 
+   text-align: center;
 }
 </style>
 
@@ -76,19 +91,19 @@ table tr td:last-child {
 
 <p>Klik op een keuze hieronder om...
 <a href="./index.html" style="text-decoration: none">
-   <div>
+   <div class = "redirect">
        <p>1. terug te gaan naar de hoofdopgave.
   </div></a>
 <a href="#" style="text-decoration: none">
-   <div onclick="clearField()">
+   <div class = "redirect" onclick="clearField()">
        <p>2. je antwoord op deze opgave te verbeteren.
   </div></a>
 <a href="#" style="text-decoration: none">
-   <div onclick="location.reload();">
+   <div class = "redirect" onclick="location.reload();">
        <p>3. deze opgave met andere getallen te maken.
   </div></a>
 <a href="#" style="text-decoration: none">
-   <div onclick="getWk();">
+   <div class = "redirect" onclick="getWk();">
        <p>4. de uitwerking van deze opgave te zien.
   </div></a>
 
