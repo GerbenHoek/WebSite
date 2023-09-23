@@ -35,7 +35,7 @@ table tr td:last-child {
 .shadow {
   box-shadow: 1px 2px 3px #969493;
   background-color:#F0F0F0;
-  border-radius: 5px; 
+  border-radius: 2px; 
 }
 
 .redirect {
@@ -43,7 +43,6 @@ table tr td:last-child {
    border: 2px outset #e6efff;
    border-radius: 5px; 
    text-align: center;
-
 }
 
 .redirect:hover {
@@ -51,7 +50,6 @@ table tr td:last-child {
    border: 2px outset #e6efff;
    border-radius: 5px; 
    text-align: center;
-
 }
 
 
@@ -91,7 +89,7 @@ table tr td:last-child {
 
 
 <p><input id="answer" class="w3-input w3-border" style="width:150px" type="text">
-<p><button class="w3-btn w3-round-large w3-theme-d2" onclick="submit()">Kijk na</button>
+<p><button class="w3-btn w3-round-large w3-theme-d2" onclick="controlSubmit()">Kijk na</button>
 
 <div class = "shadow">
 <p id="feedback">
@@ -113,6 +111,8 @@ table tr td:last-child {
       <div class ="redirect" onclick="location.reload();">
          <p>3. deze opgave met andere getallen te maken.
       </div></a>
+</div>
+<div style = "height: 200px">
 </div>
 
 </div>
@@ -154,6 +154,10 @@ function getTask() {
       ,"number":0
       }
       , onSuccess, onFailure);
+}
+
+function controlSubmit (){
+   if ($("#answer").val() != '') {submit()}
 }
 
 function submit() {
