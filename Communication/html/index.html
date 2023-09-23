@@ -35,7 +35,25 @@ table tr td:last-child {
 .shadow {
   box-shadow: 1px 2px 3px #969493;
   background-color:#F0F0F0;
+  border-radius: 5px; 
 }
+
+.redirect {
+   background-color: #e6efff;  
+   border: 2px outset #e6efff;
+   border-radius: 5px; 
+   text-align: center;
+
+}
+
+.redirect:hover {
+   background-color: #d4e3ff;  
+   border: 2px outset #e6efff;
+   border-radius: 5px; 
+   text-align: center;
+
+}
+
 
 </style>
 
@@ -67,8 +85,14 @@ table tr td:last-child {
 <p>Bereken de waarde van het vraagteken met behulp van lineair extrapoleren.
 
 <p><b>Antwoord:</b>
+
+
+
+
+
 <p><input id="answer" class="w3-input w3-border" style="width:150px" type="text">
 <p><button class="w3-btn w3-round-large w3-theme-d2" onclick="submit()">Kijk na</button>
+
 <div class = "shadow">
 <p id="feedback">
 </div>
@@ -78,15 +102,15 @@ table tr td:last-child {
 <div id="nav">
    <p>Klik op een keuze hieronder om...
    <a href="#" style="text-decoration: none">
-      <div onclick="redirect()">
+      <div class ="redirect" onclick="redirect()">
          <p>1. een eenvoudigere deelopgave maken.
       </div></a>
    <a href="#" style="text-decoration: none">
-      <div onclick="clearField()">
+      <div class ="redirect" onclick="clearField()">
          <p>2. je antwoord op deze opgave te verbeteren.
       </div></a>
    <a href="#" style="text-decoration: none">
-      <div onclick="location.reload();">
+      <div class ="redirect" onclick="location.reload();">
          <p>3. deze opgave met andere getallen te maken.
       </div></a>
 </div>
