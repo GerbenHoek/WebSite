@@ -88,7 +88,7 @@ table tr td:last-child {
 
 
 
-<p><input id="answer" class="w3-input w3-border" style="width:150px" type="text">
+<p><input onclick = "hideFB()" id="answer" class="w3-input w3-border" style="width:150px" type="text">
 <p><button class="w3-btn w3-round-large w3-theme-d2" onclick="controlSubmit()">Kijk na</button>
 
 <div class = "shadow">
@@ -120,6 +120,11 @@ table tr td:last-child {
 </body>
 
 <script>
+
+function hideFB() {
+   $("#feedback").html("");  
+}
+
 
 function clearField() {
    $("#answer").val('');

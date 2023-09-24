@@ -82,7 +82,7 @@ table tr td:last-child {
 <p>Kijk hiervoor eerst hoe groot de verandering van y is per stap van x.
 
 <p><b>Antwoord:</b>
-<p><input id="answer" class="w3-input w3-border" style="width:150px" type="text">
+<p><input onclick = "hideFB()" id="answer" class="w3-input w3-border" style="width:150px" type="text">
 <p><button class="w3-btn w3-round-large w3-theme-d2" onclick="controlSubmit()">Kijk na</button>
 <div class = "shadow">
 <p id="feedback">
@@ -137,6 +137,10 @@ function getWk() {
 function clearField() {
    $("#answer").val('');
    $("#feedback").html("")   
+}
+
+function hideFB() {
+   $("#feedback").html("");  
 }
 
 function getTask() {
