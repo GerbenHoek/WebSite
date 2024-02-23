@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<title>VideoTest</title>
+<meta name="viewport" content="width=device-width; initial-scale=1.0">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-indigo.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<style>
+.ppRound {
+  border-radius: 2px;
+  width: 50px;
+  height: 30px;
+  box-shadow: 1px 2px 3px #969493;
+};
+
+.hide {
+display: none;
+};
+
+</style>
+
+<body>
+<div id="video" class= "hide">
+<video id="myVideo" width="500" height="270">
+  <source src="movie.mp4" type="video/mp4">
+  Your browser does not support HTML5 video.
+</video><br>
+<div onclick="playPauze()">&nbsp;
+<img id="play" src = "./play.png" class="ppRound hide"></img> 
+<img id="pause" src = "./pause.png" class="ppRound"></img>
+</div>
+
+</div>
+
+<button id="showVid" onclick="showVid()">showVid</button>
+<button onclick="hideVid()">hideVid</button>
+
+<script> 
+
+let vid = document.getElementById("myVideo"); 
+
+vid.onended = function() {
+   $("#video").hide();
+   $("#showVid").hide();
+};
+
+function playPauze() {
+   if (vid.paused) {$("#play").hide() 
+                    $("#pause").show() 
+                    vid.play();}     
+   else            {$("#play").show() 
+                    $("#pause").hide() 
+                    vid.pause();};
+};
+
+function showVid() {
+   $("#video").show(); 
+   vid.play(); 
+};
+
+function hideVid() {
+   $("#video").hide();  
+   $("#showVid").hide();
+   vid.pause();
+};
+
+function startHideVid() {
+   $("#video").hide(); 
+   $("#play").hide()
+};
+</script> 
+
+</body> 
+</html>
+
+
+</body>
+
+<script>
+	
+</script>
+</html>

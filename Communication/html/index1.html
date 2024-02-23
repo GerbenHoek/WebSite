@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<title>Lex Tutor</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-indigo.css">
+<link rel="stylesheet" href="./tutor.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<style>
+</style>
+
+<body onload="getTask(); hideFB()">
+
+<div class = "sticky" style = "background-color: white;">
+   <h2>&nbsp;&nbsp;&nbsp;<img src = "./media/logo.png" style="width:32px;height:40px;">&nbsp;&nbsp;&nbsp;Lineair extrapoleren</h2>
+   <div class="header"><h3>&nbsp;Deeltaak: eenvoudige getallen</h3></div>
+</div>
+
+<div style = "height:120px"></div>
+
+<div class="w3-container center">
+   <div style="height:50px;"> </div>
+
+   <p><b>Opdracht:</b>
+   <p>Gegeven de volgende tabel:
+
+   <table class="w3-table">
+      <tr>
+         <td>x</td>
+         <td id="x1">00</td>
+         <td id="x2">00</td>
+         <td id="xv">00</td>
+      </tr>
+      <tr>
+         <td>y</td>
+         <td id="y1">00</td>
+         <td id="y2">00</td>
+         <td>?</td>
+      </tr>
+   </table>
+
+   <p>Bereken de waarde van het vraagteken met behulp van lineair extrapoleren. 
+   <p>Bereken hiervoor eerst hoe groot de verandering van y per stap van x is.
+   <p>Rond zo nodig af op twee decimalen.
+
+   <p><b>Antwoord:</b>
+   <p><input onclick = "hideFB()" id="answer" class="w3-input w3-border" style="width:150px" type="text">
+   <p><button class= "button shadow" style = "height:40px;" onclick="controlSubmit()">Kijk na</button>
+
+   <div id = "FBdiv">
+      <div class = "feedback shadow">
+         <p id="feedback">
+      </div>
+   </div>
+
+   <p>Klik op een keuze hieronder om...
+   <a href="./index4.html" style="text-decoration: none">
+      <div class ="button shadow center">
+         <p>1. Terug te gaan naar de hoofdopgave.
+      </div>
+   </a>
+
+   <div class ="button shadow center" onclick="clearField()">
+      <p>2. Je antwoord op deze opgave te verbeteren.
+   </div>
+   <div class ="button shadow center" onclick="location.reload();">
+      <p>3. Deze opgave met andere getallen te maken.
+   </div>
+   <div class ="button shadow center" onclick= "getWk();">
+      <p>4. De uitwerking van deze opgave te zien.
+   </div>
+   <div style = "height: 120px"></div>
+
+</div>
+
+<div class = "footer" style = "height:200px"></div>
+
+</body>
+
+<script>
+
+
+
+function getWk() {
+
+   function onSuccess(result) {
+      $("#feedback").html(result.workout);
+      $("#FBdiv").show();   
+   }
+
+   function onFailure(result) {
+      alert(JSON.stringify(result));
+   }
+
+   makeRequest(
+      {"service":"workout"
+      ,"number":1
+      ,"task":globTask}, onSuccess, onFailure);
+}
+
+function clearField() {
+   $("#answer").val('');
+   $("#feedback").html("")
+   $("#FBdiv").hide();     
+}
+
+function hideFB() {
+   $("#FBdiv").hide();   
+}
+
+function getTask() {
+
+   function onSuccess(result) {
+      $("#x1").html(result.task.x1);
+      $("#x2").html(result.task.x2);
+      $("#xv").html(result.task.xv);
+      $("#y1").html(result.task.y1);
+      $("#y2").html(result.task.y2);
+      window.globTask = result.task;
+   };
+
+   function onFailure(result) {
+      alert(JSON.stringify(result));
+   };
+
+   makeRequest(
+      {"service": "task"
+      ,"number":1
+      }
+      , onSuccess, onFailure);
+}
+
+function controlSubmit (){
+   if ($("#answer").val() != '') {submit()}
+}
+
+function submit() {
+
+   var txt = $("#answer").val();
+   
+   function onSuccess(result) {
+      $("#feedback").html(result.feedback);
+      $("#FBdiv").show();
+   }
+
+   function onFailure(result) {
+      var msgs = "Vul alleen het getal in, " +
+                 "gebruik bij decimale getallen een punt."
+      $("#feedback").html(msgs);   
+      $("#FBdiv").show();    
+   }
+   
+
+   makeRequest(
+      {"service": "feedback"
+      ,"number":1
+      ,"task":globTask
+      ,"answer":Number(txt)}, onSuccess, onFailure);
+}
+
+function makeRequest(request, onSuccess, onFailure) {
+      $.ajax({
+      cache: false,
+      url: "cgi-bin/mbt-server.cgi",
+      // url: "../cgi-bin/mbt-server.cgi",
+      data: "input=" + encodeURI(JSON.stringify(request)),
+      success: onSuccess,
+      error: onFailure,
+      timeout: 100000
+   })
+}
+
+</script>
+
+</html> 
